@@ -1,13 +1,11 @@
 .TrackListWrapper {
   width: 90vw;
-
-  .Header {
-    width: 100%;
-    border: 1px dotted gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
+  padding: 2rem;
 }
 
+.Header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -17,7 +17,10 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isPlay = false }) => {
   const router = useRouter();
 
   return (
-    <Box className={style.trackItem} onClick={()=>router.push(`/tracks/${track._id}`)}>
+    <Box
+      className={style.trackItem}
+      onClick={() => router.push(`/tracks/${track._id}`)}
+    >
       <Box className={style.trackItemElement}>
         <PlayButton isPlay={isPlay} />
         <img alt={track.name} height={50} width={50} src={track.picture} />
@@ -32,7 +35,10 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isPlay = false }) => {
         <Box>
           {isPlay && <Typography color={"GrayText"}> 3:45 / 6:50 </Typography>}
         </Box>
-        <IconButton className={style.btnDelete}>
+        <IconButton
+          className={style.btnDelete}
+          onClick={(e) => e.stopPropagation()}
+        >
           <DeleteIcon />
         </IconButton>
       </Box>

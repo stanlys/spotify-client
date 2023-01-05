@@ -10,11 +10,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-      <MainLayout>
-        <Box className={style.caption}>
-          <Typography variant="h1">SPOTIFY</Typography>
-          <Typography variant="h4">The best MUSIC here</Typography>
-        </Box>
-      </MainLayout>
+    <MainLayout>
+      <Box className={style.caption}>
+        <Typography variant="h1" sx={{ fontWeight: 700 }}>
+          SPOTIFY
+        </Typography>
+        <Typography variant="h4">The best MUSIC here</Typography>
+      </Box>
+    </MainLayout>
   );
 }

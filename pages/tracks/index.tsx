@@ -1,34 +1,14 @@
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  IconButton,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Grid, IconButton, Paper, Typography } from "@mui/material";
 import React from "react";
 import MainLayout from "../../Layouts/MainLayout";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import style from "./common.module.scss";
 import { useRouter } from "next/router";
-import { ITrack } from "../../interface/tracks";
 import TrackList from "../../components/TrackList/TrackList";
+import { TRACKS } from "../../MOCK_DATA/tracks";
 
 const Tracks = () => {
   const router = useRouter();
-  const tracks: ITrack[] = [
-    {
-      _id: "1",
-      artist: "Мара",
-      audio: "1",
-      picture: "1.jpg",
-      text: "1",
-      comments: [],
-      listens: 1,
-      name: "Чё на чём",
-    },
-  ];
 
   return (
     <MainLayout>
@@ -45,7 +25,7 @@ const Tracks = () => {
               <CloudUploadIcon />
             </IconButton>
           </Grid>
-          <TrackList tracks={tracks} />
+          <TrackList tracks={TRACKS} />
         </Paper>
       </Grid>
     </MainLayout>

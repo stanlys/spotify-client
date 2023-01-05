@@ -21,7 +21,6 @@ const Tracks = () => {
               component="label"
               onClick={() => router.push("/tracks/create")}
             >
-              {/* <input hidden accept="image/*" type="file" /> */}
               <CloudUploadIcon />
             </IconButton>
           </Grid>

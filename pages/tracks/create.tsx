@@ -1,12 +1,30 @@
-import { Typography, Box, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  Grid,
+  Divider,
+  TextField,
+} from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "../../Layouts/MainLayout";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import style from "./common.module.scss";
+import StepWrapper from "../../components/StepWrapper/StepWrapper";
+import FileUpload from "../../components/StepWrapper/FileUpload";
 
 const TrackLoader = () => {
   const router = useRouter();
+  const [page, setPage] = useState<number>(0);
+
+  const next = () => {
+    if (page < 2) setPage((page) => page + 1);
+  };
+
+  const back = () => {
+    if (page > 0) setPage((page) => page - 1);
+  };
 
   return (
     <MainLayout>
@@ -16,6 +34,33 @@ const TrackLoader = () => {
         </Button>
         <Typography>Track Loader</Typography>
       </Box>
+      <StepWrapper activeStep={page}>
+        <Box>
+          <Typography color="GrayText">Step{page + 1}</Typography>
+          <Divider />
+          {page == 0 && (
+            <Grid container direction={"column"} sx={{ p: 1 }} gap={1}>
+              <TextField fullWidth label={"Track name"}></TextField>
+              <TextField fullWidth label={"Artist"}></TextField>
+              <TextField
+                fullWidth
+                label={"Track text"}
+                multiline
+                rows={3}
+              ></TextField>
+            </Grid>
+          )}
+          {page == 1 && (
+            <FileUpload file={""} setFile={() => {}} accept={"image/*"} />
+          )}
+        </Box>
+      </StepWrapper>
+      <Grid container justifyContent={"space-between"}>
+        <Button disabled={page == 0} onClick={back}>
+          Back
+        </Button>
+        <Button onClick={next}>Next</Button>
+      </Grid>
     </MainLayout>
   );
 };

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import { Box, Button, Drawer, Paper, Typography } from "@mui/material";
 import style from "./styles/common.module.scss";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

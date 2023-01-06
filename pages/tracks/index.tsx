@@ -6,6 +6,8 @@ import style from "./common.module.scss";
 import { useRouter } from "next/router";
 import TrackList from "../../components/TrackList/TrackList";
 import { TRACKS } from "../../MOCK_DATA/tracks";
+import { useTypedSelector } from "../../hooks/useTypedSelection";
+import { useAction } from "../../hooks/useAction";
 
 const Tracks = () => {
   const router = useRouter();

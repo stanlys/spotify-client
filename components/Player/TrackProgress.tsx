@@ -24,7 +24,7 @@ const TrackProgress: React.FC<TrackProgressProps> = ({
         max={right}
         value={left}
         onChange={onChange}
-        width={width}
+        style={{ width: width }}
       />
       <Box width={"4rem"}>
         {left} / {right}

@@ -7,6 +7,7 @@ import PlayButton from "./PlayButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import TrackNameWithArtist from "./TrackNameWithArtist";
 
 interface TrackItemProps {
   track: ITrack;
@@ -24,12 +25,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isPlay = false }) => {
       <Box className={style.trackItemElement}>
         <PlayButton isPlay={isPlay} />
         <img alt={track.name} height={50} width={50} src={track.picture} />
-        <Grid container direction={"column"}>
-          <Typography variant="h5">{track.name}</Typography>
-          <Typography variant="subtitle2" color={"GrayText"}>
-            {track.artist}
-          </Typography>
-        </Grid>
+        <TrackNameWithArtist track={track} />
       </Box>
       <Box className={style.trackItemElement}>
         <Box>

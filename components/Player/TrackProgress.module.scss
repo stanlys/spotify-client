@@ -1,0 +1,15 @@
+.progressBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .input {
+    color: cornflowerblue;
+  }
+
+  .caption {
+    width: 7rem;
+  }
+}

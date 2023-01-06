@@ -18,6 +18,9 @@ const TrackLoader = () => {
   const router = useRouter();
   const [page, setPage] = useState<number>(0);
 
+  const [picture, setPicture] = useState(null);
+  const [audio, setAudio] = useState(null);
+
   const next = () => {
     if (page < 2) setPage((page) => page + 1);
   };
@@ -51,7 +54,24 @@ const TrackLoader = () => {
             </Grid>
           )}
           {page == 1 && (
-            <FileUpload file={""} setFile={() => {}} accept={"image/*"} />
+            <FileUpload
+              caption={"Upload image"}
+              file={""}
+              setFile={setPicture}
+              accept={"image/*"}
+            >
+              <p>1</p>
+            </FileUpload>
+          )}
+          {page == 2 && (
+            <FileUpload
+              caption={"Upload track"}
+              file={""}
+              setFile={setAudio}
+              accept={"audio/*"}
+            >
+              <p>1</p>
+            </FileUpload>
           )}
         </Box>
       </StepWrapper>

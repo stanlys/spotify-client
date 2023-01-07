@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import TrackNameWithArtist from "./TrackNameWithArtist";
 import { useTypedSelector } from "../../hooks/useTypedSelection";
 import { useAction } from "../../hooks/useAction";
+import Head from "next/head";
 
 interface TrackItemProps {
   audio: HTMLAudioElement | null;
@@ -23,35 +24,41 @@ const TrackItem: React.FC<TrackItemProps> = ({
   isPlay = false,
 }) => {
   const router = useRouter();
-  const {setTrack} = useAction();
+  const { setTrack } = useAction();
 
   const play = () => {
-    console.log('play track');
     setTrack(track);
-  }
+  };
 
   return (
-    <Box
-      className={style.trackItem}
-      onClick={() => router.push(`/tracks/${track._id}`)}
-    >
-      <Box className={style.trackItemElement}>
-        <PlayButton isPlay={isPlay} action={play} />
-        <img alt={track.name} height={50} width={50} src={track.picture} />
-        <TrackNameWithArtist track={track} />
-      </Box>
-      <Box className={style.trackItemElement}>
-        <Box>
-          {isPlay && <Typography color={"GrayText"}> 3:45 / 6:50 </Typography>}
+    <>
+      <Head>
+        <title>Конкретный трек</title>
+      </Head>
+      <Box
+        className={style.trackItem}
+        onClick={() => router.push(`/tracks/${track._id}`)}
+      >
+        <Box className={style.trackItemElement}>
+          <PlayButton isPlay={isPlay} action={play} />
+          <img alt={track.name} height={50} width={50} src={track.picture} />
+          <TrackNameWithArtist track={track} />
         </Box>
-        <IconButton
-          className={style.btnDelete}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <DeleteIcon />
-        </IconButton>
+        <Box className={style.trackItemElement}>
+          <Box>
+            {isPlay && (
+              <Typography color={"GrayText"}> 3:45 / 6:50 </Typography>
+            )}
+          </Box>
+          <IconButton
+            className={style.btnDelete}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

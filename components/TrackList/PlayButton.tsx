@@ -10,10 +10,15 @@ interface PlayButtonProps {
   action: () => void;
 }
 
-const PlayButton: React.FC<PlayButtonProps> = ({ isPlay, action}) => {
-  
+const PlayButton: React.FC<PlayButtonProps> = ({ isPlay, action }) => {
   return (
-    <IconButton size="large" onClick={action}>
+    <IconButton
+      size="large"
+      onClick={(e) => {
+        e.stopPropagation();
+        action();
+      }}
+    >
       {!isPlay ? <PauseCircleIcon /> : <PlayCircle />}
     </IconButton>
   );

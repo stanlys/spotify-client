@@ -13,7 +13,6 @@ import TrackProgress from "./TrackProgress";
 let audio: HTMLAudioElement | null;
 
 const Player = () => {
-  const progress = 5;
   const track = TRACKS[0];
 
   useEffect(() => {
@@ -21,11 +20,12 @@ const Player = () => {
       audio = new Audio(TRACKS[0].audio);
     } else {
       setAudio();
+      playTrack();
     }
-  }, []);
+  }, [audio]);
 
   const setAudio = () => {
-    if (activeTrack && audio) {
+    if (audio) {
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         setDuration(Math.ceil(audio?.duration as number));
@@ -66,8 +66,12 @@ const Player = () => {
   return (
     <BottomBar>
       <Box className={style.player}>
-        <PlayButton isPlay={pause} action={play} />
-        <TrackNameWithArtist track={track} />
+        {activeTrack && (
+          <>
+            <PlayButton isPlay={pause} action={play} />
+            <TrackNameWithArtist track={track} />
+          </>
+        )}
         <TrackProgress
           width={"30rem"}
           left={currentTime}

@@ -6,7 +6,7 @@ interface TrackProgressProps {
   width: string;
   left: number;
   right: number;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TrackProgress: React.FC<TrackProgressProps> = ({
@@ -20,13 +20,13 @@ const TrackProgress: React.FC<TrackProgressProps> = ({
       <input
         type={"range"}
         className={style.input}
-        min={left}
+        min={0}
         max={right}
         value={left}
         onChange={onChange}
         style={{ width: width }}
       />
-      <Box width={"4rem"}>
+      <Box width={"4.6rem"}>
         {left} / {right}
       </Box>
     </Box>

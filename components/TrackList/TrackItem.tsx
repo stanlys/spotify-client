@@ -8,14 +8,27 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import TrackNameWithArtist from "./TrackNameWithArtist";
+import { useTypedSelector } from "../../hooks/useTypedSelection";
+import { useAction } from "../../hooks/useAction";
 
 interface TrackItemProps {
+  audio: HTMLAudioElement | null;
   track: ITrack;
   isPlay?: boolean;
 }
 
-const TrackItem: React.FC<TrackItemProps> = ({ track, isPlay = false }) => {
+const TrackItem: React.FC<TrackItemProps> = ({
+  audio,
+  track,
+  isPlay = false,
+}) => {
   const router = useRouter();
+  const {setTrack} = useAction();
+
+  const play = () => {
+    console.log('play track');
+    setTrack(track);
+  }
 
   return (
     <Box
@@ -23,7 +36,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isPlay = false }) => {
       onClick={() => router.push(`/tracks/${track._id}`)}
     >
       <Box className={style.trackItemElement}>
-        <PlayButton isPlay={isPlay} />
+        <PlayButton isPlay={isPlay} action={play} />
         <img alt={track.name} height={50} width={50} src={track.picture} />
         <TrackNameWithArtist track={track} />
       </Box>

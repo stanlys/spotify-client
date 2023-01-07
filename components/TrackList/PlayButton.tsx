@@ -7,32 +7,14 @@ import { TRACKS } from "../../MOCK_DATA/tracks";
 
 interface PlayButtonProps {
   isPlay: boolean;
+  action: () => void;
 }
-let audio: HTMLAudioElement | null;
 
-const PlayButton: React.FC<PlayButtonProps> = ({ isPlay }) => {
-  const { pauseTrack, playTrack } = useAction();
-
-  useEffect(() => {
-    if (!audio) {
-      audio = new Audio(TRACKS[0].audio);
-      // audio.src = ;
-    }
-  }, []);
-
-  const play = () => {
-    if (isPlay) {
-      playTrack();
-      if (audio) audio.play();
-    } else {
-      pauseTrack();
-      if (audio) audio.pause();
-    }
-  };
-
+const PlayButton: React.FC<PlayButtonProps> = ({ isPlay, action}) => {
+  
   return (
-    <IconButton size="large" onClick={play}>
-      {isPlay ? <PauseCircleIcon /> : <PlayCircle />}
+    <IconButton size="large" onClick={action}>
+      {!isPlay ? <PauseCircleIcon /> : <PlayCircle />}
     </IconButton>
   );
 };

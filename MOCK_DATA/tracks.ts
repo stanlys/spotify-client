@@ -10,9 +10,9 @@ export const TRACKS: ITrack[] = [
     _id: "1",
     artist: "Мара",
     audio:
-      "http://localhost:3005/audio/e5ce5739-fc2d-438f-882e-7c2a4b0d8208.mp3",
+      "http://localhost:3005/audio/5afc6fdb-2a40-4794-8d80-ee5812fa0feb.mp3",
     picture:
-      "http://localhost:3005/image/f81e57d2-d6b3-48a6-8031-210639c1dc57.jpg",
+      "http://localhost:3005/image/4bf1d0f4-9d6e-430f-9cee-0c0993fc26d8.jpg",
     text: "1",
     comments: [],
     listens: 1,

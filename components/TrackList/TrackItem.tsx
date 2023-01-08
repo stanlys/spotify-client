@@ -27,14 +27,12 @@ const TrackItem: React.FC<TrackItemProps> = ({
   const { setTrack } = useAction();
 
   const play = () => {
+    console.log('Set active track');
     setTrack(track);
   };
 
   return (
     <>
-      <Head>
-        <title>Конкретный трек</title>
-      </Head>
       <Box
         className={style.trackItem}
         onClick={() => router.push(`/tracks/${track._id}`)}

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { TRACKS } from "../../MOCK_DATA/tracks";
 import Comments from "../../components/TrackList/Comments";
 import TrackDetail from "../../components/TrackList/TrackDetail";
+import Head from "next/head";
 
 interface TrackDetailsProps {
   track: ITrack;
@@ -18,17 +19,24 @@ const TrackDetails = () => {
   const track = TRACKS[0];
 
   return (
-    <MainLayout>
-      <Box className={style.Header}>
-        <Button onClick={() => router.back()}>
-          <ArrowBackIosIcon /> Back{" "}
-        </Button>
-        <Typography>Detail Information</Typography>
-      </Box>
-      <TrackDetail track={track} />
-      <Divider sx={{ mb: 1 }} />
-      <Comments track={track} />
-    </MainLayout>
+    <>
+      <Head>
+        <title>
+          {track.artist} - {track.name}
+        </title>
+      </Head>
+      <MainLayout>
+        <Box className={style.Header}>
+          <Button onClick={() => router.back()}>
+            <ArrowBackIosIcon /> Back{" "}
+          </Button>
+          <Typography>Detail Information</Typography>
+        </Box>
+        <TrackDetail track={track} />
+        <Divider sx={{ mb: 1 }} />
+        <Comments track={track} />
+      </MainLayout>
+    </>
   );
 };
 

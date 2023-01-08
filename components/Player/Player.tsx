@@ -3,7 +3,6 @@ import { Box, Grid, LinearProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useAction } from "../../hooks/useAction";
 import { useTypedSelector } from "../../hooks/useTypedSelection";
-import { TRACKS } from "../../MOCK_DATA/tracks";
 import BottomBar from "../Navbar/BottomBar";
 import PlayButton from "../TrackList/PlayButton";
 import TrackNameWithArtist from "../TrackList/TrackNameWithArtist";
@@ -13,19 +12,23 @@ import TrackProgress from "./TrackProgress";
 let audio: HTMLAudioElement | null;
 
 const Player = () => {
-  const track = TRACKS[0];
+  const { pause, activeTrack, volume, currentTime, durationTime } =
+    useTypedSelector((state) => state.player);
+
+  const { pauseTrack, playTrack } = useAction();
 
   useEffect(() => {
     if (!audio) {
-      audio = new Audio(TRACKS[0].audio);
+      if (activeTrack) audio = new Audio();
     } else {
       setAudio();
       playTrack();
     }
-  }, [audio]);
+  }, [activeTrack]);
 
   const setAudio = () => {
     if (audio) {
+      audio.src = activeTrack?.audio as string;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         setDuration(Math.ceil(audio?.duration as number));
@@ -35,9 +38,6 @@ const Player = () => {
       };
     }
   };
-
-  const { pause, activeTrack, volume, currentTime, durationTime } =
-    useTypedSelector((state) => state.player);
 
   const { setCurrentTime, setVolume, setDuration } = useAction();
 
@@ -51,9 +51,8 @@ const Player = () => {
     if (audio) audio.currentTime = Number(e.target.value);
   };
 
-  const { pauseTrack, playTrack } = useAction();
-
   const play = () => {
+    console.log(pause);
     if (pause) {
       playTrack();
       if (audio) audio.play();
@@ -69,7 +68,7 @@ const Player = () => {
         {activeTrack && (
           <>
             <PlayButton isPlay={pause} action={play} />
-            <TrackNameWithArtist track={track} />
+            <TrackNameWithArtist track={activeTrack} />
           </>
         )}
         <TrackProgress

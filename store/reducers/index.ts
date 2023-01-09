@@ -1,10 +1,12 @@
-import { AnyAction, combineReducers } from "redux";
+import { AnyAction, CombinedState, combineReducers } from "redux";
 import { initialState, playerReducer } from "./playerReducer";
 import { HYDRATE } from "next-redux-wrapper";
 import { PlayerState, PlayerAction } from "../../interface/player";
+import { trackReducer } from "./trackReducer";
 
 const rootReducer = combineReducers({
   player: playerReducer,
+  // tracks: trackReducer,
 });
 
 export const reducer = (state: any, action: AnyAction) => {

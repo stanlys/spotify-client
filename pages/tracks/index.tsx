@@ -9,9 +9,14 @@ import { TRACKS } from "../../MOCK_DATA/tracks";
 import { useTypedSelector } from "../../hooks/useTypedSelection";
 import { useAction } from "../../hooks/useAction";
 import Head from "next/head";
+import { AppThunk, wrapper } from "../../store";
+import { addAbortSignal } from "stream";
+import { fetchTrack } from "../../store/actions/tracks";
+import { TrackActionTypes } from "../../interface/tracks";
 
 const Tracks = () => {
   const router = useRouter();
+  // const { tracks, error } = useTypedSelector((state) => state.tracks);
 
   return (
     <>
